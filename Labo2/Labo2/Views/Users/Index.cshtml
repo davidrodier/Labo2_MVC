@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+    function ButtonAnimation(i)
+    {
+        document.getElementById(i).style.backgroundColor = "gray";
+    }
+    function ButtonAnimation_down(i) {
+        document.getElementById(i).style.backgroundColor = "white";
+    }
+</script>
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <td id="Button_1" style="border:2px solid black" onmouseover="ButtonAnimation('Button_1')" onmouseout="ButtonAnimation_down('Button_1')">@Html.ActionLink("Inscription", "Inscription", "Users")</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td id="Button_2" style="border:2px solid black " onmouseover="ButtonAnimation('Button_2')" onmouseout="ButtonAnimation_down('Button_2')">@Html.ActionLink("Inscription", "Inscription", "Users")</td>
+    </tr>
+</table>
+
