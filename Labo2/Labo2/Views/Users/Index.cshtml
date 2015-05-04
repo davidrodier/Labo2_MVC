@@ -6,22 +6,50 @@
 <script type="text/javascript">
     function ButtonAnimation(i)
     {
-        document.getElementById(i).style.backgroundColor = "gray";
+        document.getElementById(i).style.backgroundColor = "darkgray";
     }
     function ButtonAnimation_down(i) {
+        document.getElementById(i).style.backgroundColor = "gray";
+    }
+    function ButtonAnimation_click(i) {
         document.getElementById(i).style.backgroundColor = "white";
     }
+    function ButtonAnimation_up(i) {
+        document.getElementById(i).style.backgroundColor = "gray";
+    }
 </script>
-
+<style>
+    a{
+        color:white;
+    }
+    a:hover{
+        color:lightgray;
+        text-decoration:none;
+    }
+</style>
 <h2>Index</h2>
 
 <table>
     <tr>
-        <td id="Button_1" style="border:2px solid black" onmouseover="ButtonAnimation('Button_1')" onmouseout="ButtonAnimation_down('Button_1')">@Html.ActionLink("Inscription", "Inscription", "Users")</td>
+        <td id="Button_1"
+            style="border: 2px solid black; padding: 5px; background-color: gray"
+            onmouseover="ButtonAnimation('Button_1')"
+            onmouseout="ButtonAnimation_down('Button_1')"
+            onmousedown="ButtonAnimation_click('Button_1')"
+            onmouseup="ButtonAnimation_up('Button_1')">
+            @Html.ActionLink("Inscription", "Inscription", "Users")
+        </td>
     </tr>
     <tr><td>&nbsp;</td></tr>
     <tr>
-        <td id="Button_2" style="border:2px solid black " onmouseover="ButtonAnimation('Button_2')" onmouseout="ButtonAnimation_down('Button_2')">@Html.ActionLink("Inscription", "Inscription", "Users")</td>
+        <td id="Button_2"
+            style="border: 2px solid black; padding: 5px; background-color: gray; "
+            onmouseover="ButtonAnimation('Button_2')"
+            onmouseout="ButtonAnimation_down('Button_2')"
+            onmousedown="ButtonAnimation_click('Button_2')"
+            onmouseup="ButtonAnimation_up('Button_2')">
+            @Html.ActionLink("Lister", "Lister", "Users")
+        </td>
     </tr>
 </table>
 
