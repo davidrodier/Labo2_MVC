@@ -2,6 +2,30 @@
 @{
     ViewBag.Title = "Inscription";
 }
+<script type="text/javascript">
+    //function preload()
+    //{
+    //    var img = new Image();
+    //    img.src = document.getElementById("Image_path").value;
+
+    //    document.getElementById("Image").src = img.src;
+    //}
+    function preload(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#Image').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function () {
+        readURL(this);
+    });
+</script>
 <style>
     .radio_buttons tr:nth-child(odd) td {
         background-color: #EEEEEE;
@@ -33,7 +57,7 @@
                 </tr>
                 <tr>
                     <td>Téléphone: </td>
-                    <td><input type="text" /></td>
+                    <td><input type="tel" /></td>
                 </tr>
                 <tr>
                     <td>Code postal: </td>
@@ -41,7 +65,7 @@
                 </tr>
                 <tr>
                     <td>Naissance: </td>
-                    <td><input type="text" /></td>
+                    <td><input style="width:174px;" type="date" /></td>
                 </tr>
                 <tr>
                     <td>Sexe: </td>
@@ -71,7 +95,8 @@
             </table>
         </td>
         <td>
-            <img src="/Images/anonymous.jpg" style="width:240px; height:180px" />
+            <img id="Image" src="/Images/anonymous.jpg" style="width:240px; height:180px" /><br />
+            <input id="Image_path" onchange="preload(this)" type="file" />
         </td>
     </tr>
 </table>
