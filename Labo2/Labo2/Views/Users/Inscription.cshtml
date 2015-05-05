@@ -1,4 +1,4 @@
-﻿
+﻿@model Labo2.Models.User
 @{
     ViewBag.Title = "Inscription";
 }
@@ -25,7 +25,7 @@
     $("#imgInp").change(function () {
         readURL(this);
     });
-</script>
+</script>                        
 <style>
     .radio_buttons tr:nth-child(odd) td {
         background-color: #EEEEEE;
@@ -43,25 +43,33 @@
 </style>
 <br />
 <br />
+
+@using (Html.BeginForm("Inscription",
+                        "Users",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+{ 
+    @Html.AntiForgeryToken()
+    
 <table>
     <tr>
         <td>
             <table>
                 <tr>
                     <td>Prénom: </td>
-                    <td><input type="text" /></td>
+                    <td>@Html.TextBox("Prenom", Model.Prenom) @*<input type="text" />*@</td>
                 </tr>
                 <tr>
                     <td>Nom: </td>
-                    <td><input type="text" /></td>
+                    <td>@Html.TextBox("Nom", Model.Nom) @*<input type="text" />*@</td>
                 </tr>
                 <tr>
                     <td>Téléphone: </td>
-                    <td><input type="tel" /></td>
+                    <td>@Html.TextBox("Telephone", Model.Telephone) @*<input type="tel" />*@</td>
                 </tr>
                 <tr>
                     <td>Code postal: </td>
-                    <td><input type="text" /></td>
+                    <td>@Html.TextBox("Code_Postal", Model.Code_Postal) @*<input type="text" />*@</td>
                 </tr>
                 <tr>
                     <td>Naissance: </td>
@@ -90,7 +98,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td style="text-align:left;"><input type="button" value="Ajouter..."/></td>
+                    <td style="text-align:left;"><input type="submit" value="Ajouter..."/></td>
                 </tr>
             </table>
         </td>
@@ -100,3 +108,4 @@
         </td>
     </tr>
 </table>
+}
