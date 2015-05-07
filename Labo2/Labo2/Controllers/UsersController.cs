@@ -7,63 +7,46 @@ using System.Web;
 using System.Web.Mvc;
 namespace Labo2.Controllers
 {
-    public class UsersController : Controller
-    {
-        //
-        // GET: /Users/
-        public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult Lister()
-        {
-            User users = new User(Session["MainDB"]);
-            users.SelectAll();
-            return View(users);
-        }
-        [HttpGet]
-        public ActionResult Inscription()
-        {
-            return View(new User());
-        }
-        [HttpPost]
-        public ActionResult Subscribe(User newUser)
-        {
-            User users = new User(Session["MainDB"]);
-            if (!String.IsNullOrEmpty(newUser.Prenom))
-            {
-                if (!String.IsNullOrEmpty(newUser.Nom))
-                {
-                    users.Prenom = newUser.Prenom;
-                    users.Nom = newUser.Nom;
-                    users.Telephone = newUser.Telephone;
-                    users.Code_Postal = newUser.Code_Postal;
-                    users.Naissance = newUser.Naissance;
-                    users.Sexe = newUser.Sexe;
-                    users.Etat_Civil = newUser.Etat_Civil;
+   public class UsersController : Controller
+   {
+      //
+      // GET: /Users/
+      public ActionResult Index()
+      {
+         return View();
+      }
+      public ActionResult Lister()
+      {
+         User users = new User(Session["MainDB"]);
+         users.SelectAll();
+         return View(users);
+      }
+      public ActionResult Inscription()
+      {
+         return View();
+      }
+      public ActionResult Modify(User user)
+      {
+         return View(user);
+      }
+      [HttpGet]
+      public ActionResult InscriptionTest()
+      {
+         ViewBag.Sexe = new SelectList(new List<string> { "Masculin", "Feminin" }, "Sexe", "Sexe");
 
-                    if (Request.Files.Count > 0)
-                    {
-                        var file = Request.Files[0];
-                        if (file != null && file.ContentLength > 0)
-                        {
-                            users.Picture = Guid.NewGuid().ToString();
-                            file.SaveAs(Server.MapPath(@"~\Avatars\") + users.Picture + ".png");
-                        }
-                    }
-                    users.Insert();
-                    return RedirectToAction("Index", "Home"); ;
-                }
-                else
-                {
-                    TempData["Notice"] = "Le mot de passe est vide...";
-                }
-            }
-            else
-            {
-                TempData["Notice"] = "Cet usager existe déjà...";
-            }
-            return View(newUser);
-        }
-	}
+         return View();
+      }
+      [HttpPost]
+      public ActionResult InscriptionTest(User user)
+      {
+         if (ModelState.IsValid)
+         {
+            User users = new User(Session["MainDB"]);
+            users.InsertRecord(user);
+
+            return this.RedirectToAction("Index");
+         }
+         return View(user);
+      }
+   }
 }
