@@ -17,5 +17,12 @@ namespace Labo2
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Session_Start()
+        {
+            Session["UserValid"] = false;
+            string DB_Path = Server.MapPath(@"~\App_Data\MainDB.mdf");
+            Session["MainDB"] = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DB_Path + "'; Integrated Security=true";
+        }
     }
 }

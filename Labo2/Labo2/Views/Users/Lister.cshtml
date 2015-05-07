@@ -1,7 +1,41 @@
-﻿
+﻿@model Labo2.Models.User
 @{
     ViewBag.Title = "Lister";
 }
 
+<style>
+    td {
+        padding: 10px;
+        text-align:center;
+    }
+    span{
+        border-radius:25px;
+        border:1px solid black;
+        padding:4px;
+        background-color:lightcoral;
+        font-family:monospace;
+    }
+    img:hover {
+        border: 2px dashed grey;
+        cursor:pointer;
+    }
+    img{
+        padding:2px;
+        width:170px;
+        height:190px;
+    }
+</style>
+
 <h2>Lister</h2>
 
+<table>
+    <tr>
+            @while(Model.Next()) {
+            <td><img alt=@Model.Id src=@Model.Picture /><br /><span>@Model.Prenom @Model.Nom</span></td>
+                if((Model.Id%5)==0){
+                    @Html.Raw("</tr>");
+                    @Html.Raw("<tr>");
+                }
+            }
+    </tr>
+</table>

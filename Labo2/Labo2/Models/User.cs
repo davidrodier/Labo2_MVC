@@ -10,18 +10,13 @@ namespace Labo2.Models
     public class User : Labo2.Class.SqlExpressWrapper
     {
         public int Id { get; set; }
-        [Required]
         public string Prenom { get; set; }
-        [Required]
         public string Nom { get; set; }
         public string Telephone { get; set; }
         public string Code_Postal { get; set; }
         public DateTime Naissance { get; set; }
-        [Required]
         public int Sexe { get; set; }
-        [Required]
         public int Etat_Civil { get; set; }
-        [Required]
         public string Picture { get; set; }
 
         public User(Object connexionString)
@@ -44,7 +39,7 @@ namespace Labo2.Models
             Naissance = DateTime.Parse(this["NAISSANCE"]);
             Sexe = int.Parse(this["SEXE"]);
             Etat_Civil = int.Parse(this["ETAT_CIVIL"]);
-            Picture = this["Picture"];
+            Picture = this["PICTURE"];
         }
 
         public String GetAvatarURL()

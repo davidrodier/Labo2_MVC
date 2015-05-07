@@ -80,7 +80,10 @@ namespace Labo2.Class
 
                 for (int f = 0; f < reader.FieldCount; f++)
                 {
-                    FieldsNames.Add(reader.GetName(f));
+                    if (reader.GetName(f) == "Id")
+                        FieldsNames.Add("ID");
+                    else
+                        FieldsNames.Add(reader.GetName(f));
                     FieldsTypes.Add(reader.GetFieldType(f));
                 }
             }

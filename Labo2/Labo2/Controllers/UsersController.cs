@@ -15,6 +15,12 @@ namespace Labo2.Controllers
         {
             return View();
         }
+        public ActionResult Lister()
+        {
+            User users = new User(Session["MainDB"]);
+            users.SelectAll();
+            return View(users);
+        }
         [HttpGet]
         public ActionResult Inscription()
         {
